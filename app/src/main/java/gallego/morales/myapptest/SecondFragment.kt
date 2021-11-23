@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import gallego.morales.myapptest.databinding.FragmentSecondBinding
@@ -13,18 +12,18 @@ import gallego.morales.myapptest.databinding.FragmentSecondBinding
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment() {
-    var charsExist = ArrayList<Char>()//list of characters representing attempts
-    var lives: Int = 0
-    var countOk = 0
-    var string = ""
-    var listSet = listOf(
-        "La comunidad del anillo",
-        "Pulp Fiction",
-        "El señor de los anillos",
-        "La lista de Schindler",
-        "Batman: El caballero de la noche",
-        "El padrino",
-        "Sueños de libertad"
+    private var charsExist = ArrayList<Char>()//list of characters representing attempts
+    private var lives: Int = 0
+    private var countOk = 0
+    private var string = ""
+    private var listSet = listOf(
+        "Super man",
+        "Capitana Marvel",
+        "Doctor strange",
+        "Hulk",
+        "Batman",
+        "Thor",
+        "Iron man"
     )
 
     private var _binding: FragmentSecondBinding? = null
@@ -32,7 +31,7 @@ class SecondFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    val listDraw = listOf(
+    private val listDraw = listOf(
         R.drawable.ahorcado0,
         R.drawable.ahorcado1,
         R.drawable.ahorcado2,
@@ -46,9 +45,10 @@ class SecondFragment : Fragment() {
 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        (activity as MainActivity?)?.supportActionBar?.title = "El ahorcado"
         return binding.root
 
     }
@@ -56,22 +56,21 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         string = getRandomString()
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_thirdFragment)
-        }
         binding.buttonIntento.setOnClickListener {
-            var letra: Char = binding.casilleroLetra.text.toString().get(0)
-            var result: String = replaceCheckLetter(string, letra)
+            val letter: Char = binding.casilleroLetra.text.toString()[0]
+            val result: String = replaceCheckLetter(string, letter)
             binding.textView.text = result
-            println("mis vidas" + lives)
             binding.imagenJugador.setImageResource(listDraw[lives])
 
+            if (lives == 6) {
+                findNavController().navigate(R.id.action_SecondFragment_to_thirdFragment)
+            }
+            if (result == string) {
+                findNavController().navigate(R.id.action_SecondFragment_to_fourFragment)
+            }
+
         }
-        println("mis vidas" + lives)
         binding.imagenJugador.setImageResource(listDraw[lives])
-
-
-
         binding.textView.text = replaceLetter(string)
     }
 
@@ -80,11 +79,11 @@ class SecondFragment : Fragment() {
         _binding = null
     }
 
-    fun getRandomString(): String {
+    private fun getRandomString(): String {
         return listSet.random()
     }
 
-    fun replaceLetter(str: String): String {
+    private fun replaceLetter(str: String): String {
         val chars: CharArray = str.toCharArray()
         for (i in chars.indices) {
             if (chars[i] != ' ') {
@@ -94,17 +93,11 @@ class SecondFragment : Fragment() {
         return chars.concatToString()
     }
 
-    fun replaceCheckLetter(str: String, myChar: Char): String {
+    private fun replaceCheckLetter(str: String, myChar: Char): String {
         val chars: CharArray = str.toCharArray()
 
         if (!chars.contains(myChar.uppercaseChar()) && !chars.contains(myChar.lowercaseChar())) {
             lives++
-
-
-            Toast.makeText(activity, "message..." + lives, Toast.LENGTH_SHORT).show()
-
-
-            println("Sorry you failed $lives times.")
         } else {
             if (!charsExist.contains(myChar)) {
                 charsExist.add(myChar)
@@ -114,7 +107,7 @@ class SecondFragment : Fragment() {
         }
         for (i in chars.indices) {
             if (chars[i] != ' ' && chars[i] != myChar.lowercaseChar() && chars[i] != myChar.uppercaseChar()) {
-                if (!charsExist.contains(chars[i])) {
+                if (!charsExist.contains(chars[i].lowercaseChar()) && !charsExist.contains(chars[i].uppercaseChar())) {
                     chars[i] = '_'
                 }
             }

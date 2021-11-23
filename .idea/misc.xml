@@ -6,8 +6,11 @@
         <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/activity_main.xml" value="0.14492753623188406" />
         <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/content_main.xml" value="0.14492753623188406" />
         <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_first.xml" value="0.16" />
+        <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_four.xml" value="0.13941368078175895" />
         <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_second.xml" value="0.264" />
-        <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_third.xml" value="0.14492753623188406" />
+        <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_third.xml" value="0.176" />
+        <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_you_lose.xml" value="0.11927083333333334" />
+        <entry key="..\:/Users/pedro/OneDrive/Escritorio/Documentos/MyAppTest/app/src/main/res/layout/fragment_you_win.xml" value="0.11979166666666667" />
       </map>
     </option>
   </component>

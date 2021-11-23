@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
+    android:label="a"
     app:startDestination="@id/FirstFragment">
 
     <fragment
@@ -22,14 +23,26 @@
         <action
             android:id="@+id/action_SecondFragment_to_thirdFragment"
             app:destination="@id/thirdFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_fourFragment"
+            app:destination="@id/fourFragment" />
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
         android:name="gallego.morales.myapptest.ThirdFragment"
         android:label="fragment_third"
-        tools:layout="@layout/fragment_third" >
+        tools:layout="@layout/fragment_third">
         <action
             android:id="@+id/action_thirdFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fourFragment"
+        android:name="gallego.morales.myapptest.FourFragment"
+        android:label="fragment_four"
+        tools:layout="@layout/fragment_four">
+        <action
+            android:id="@+id/action_fourFragment_to_FirstFragment2"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

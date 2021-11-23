@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
 import gallego.morales.myapptest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,15 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val listDraw = listOf(
-            R.drawable.ahorcado0,
-            R.drawable.ahorcado1,
-            R.drawable.ahorcado2,
-            R.drawable.ahorcado3,
-            R.drawable.ahorcado4,
-            R.drawable.ahorcado5,
-            R.drawable.ahorcado6
-        )
+       this.supportActionBar?.title = "Bienvenido a el ahorcado"
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,10 +27,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
     }
 
