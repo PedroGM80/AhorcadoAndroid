@@ -56,19 +56,26 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         string = getRandomString()
+
         binding.buttonIntento.setOnClickListener {
-            val letter: Char = binding.casilleroLetra.text.toString()[0]
-            val result: String = replaceCheckLetter(string, letter)
-            binding.textView.text = result
-            binding.imagenJugador.setImageResource(listDraw[lives])
+            val letter: Char
+            try {
+                if (!binding.casilleroLetra.text.isNullOrBlank()) {
+                    letter = binding.casilleroLetra.text.toString()[0]
+                    val result: String = replaceCheckLetter(string, letter)
+                    binding.textView.text = result
+                    binding.imagenJugador.setImageResource(listDraw[lives])
 
-            if (lives == 6) {
-                findNavController().navigate(R.id.action_SecondFragment_to_thirdFragment)
+                    if (lives == 6) {
+                        findNavController().navigate(R.id.action_SecondFragment_to_thirdFragment)
+                    }
+                    if (result == string) {
+                        findNavController().navigate(R.id.action_SecondFragment_to_fourFragment)
+                    }
+                }
+            } catch (e: Exception) {
+                println(e)
             }
-            if (result == string) {
-                findNavController().navigate(R.id.action_SecondFragment_to_fourFragment)
-            }
-
         }
         binding.imagenJugador.setImageResource(listDraw[lives])
         binding.textView.text = replaceLetter(string)
